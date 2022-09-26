@@ -1,9 +1,11 @@
 <?php
 
+namespace App\Models;
+
 class VirtualDataSource
 {
 
-    private static $newsCategory = [
+    private static $category_list = [
         [
             'id' => 1,
             'title' => 'IT',
@@ -31,7 +33,7 @@ class VirtualDataSource
         ]
     ];
 
-    private static $news = [
+    private static $news_list = [
 
         // IT ========================================
         [
@@ -167,4 +169,32 @@ class VirtualDataSource
         ]
 
     ];
+
+    public static function getNews() {
+        return static::$news_list;
+    }
+
+    public static function getNewsByCategory($id_category) {
+        $result = [];
+        $id = 0;
+        foreach (static::$news_list as $item)
+          if ($item['id_category'] == $id_category) {
+             $result[$id] = $item;
+             $id++;
+          }
+        return $result;
+    }
+
+    public static function getSingleNews($id_category, $id_news) {
+        foreach (static::$news_list as $item)
+            if (($item['id_category'] == $id_category) &&
+                ($item['id'] == $id_news)) {
+                return $item;
+            }
+        return 'error ' . $id_category . '/' . $id_news . ' not exists.';
+    }
+
+    public static function getCategories() {
+        return static::$category_list;
+    }
 }
