@@ -4,7 +4,9 @@ namespace App\Http\Controllers\news;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
-use App\Models\VirtualDataSource;
+use App\Models\VirtualDataSource_News;
+use App\Models\VirtualDataSource_Categories;
+use function PHPUnit\Framework\isNull;
 
 class CategoriesController extends Controller
 {
@@ -12,25 +14,24 @@ class CategoriesController extends Controller
      * Handle the incoming request.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
      */
-    public function getAllCategories(Request $request)
+    public function getAllCategories(VirtualDataSource_Categories $categories)
     {
-        $categories = VirtualDataSource::getCategories();
-        return $categories? view('news.categories')->with('categories', $categories): view('404');
+        return view('news.categories')->with('categories', $categories->getCategoryList());
     }
 
-    public function getNewsByCategory($id_category) {
-        $news = VirtualDataSource::getNewsByCategory($id_category);
-        return $news? view('news.news')->with('news', $news): view('404');
+    public function getNewsInCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug) {
+        $id = $categories->getIdCategoryBySlug($slug);
+        return (isNull($id))? view('news.index')->with(['news' => $news->getNewsByCategory($id), 'slug' => $slug]): view('404');
     }
 
-    public function getSingleNews($id_category, $id_news) {
-        $single_news = VirtualDataSource::getSingleNews($id_category, $id_news);
-        return $single_news? view('news.single_news')->with('single_news', $single_news): view('404');
+    public function getNewsByCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug, $id_news) {
+        $id = $categories->getIdCategoryBySlug($slug);
+        return (isNull($id))? view('news.item')->with('item', $news->getNewsByIdAndCategory($id, $id_news)): view('404');
     }
 
-    public function addNews(Request $request) {
+    public function addNews() {
         return view('news.addnews');
     }
 

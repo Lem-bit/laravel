@@ -20,19 +20,27 @@ use App\Http\Controllers\HomeController;
 
 Route::get('/', [HomeController::class, 'show'])->name('main');
 
-Route::get('/404', function () {
-   return view('404');
-})->name('404');
+Route::view('/404', '404')->name('404');
 
-Route::get('/admin', [AdminController::class, 'show'])->name('admin');
+
+Route::name('admin.')
+    ->prefix('admin')
+    ->namespace('Admin')
+    ->group( function () {
+        Route::get('/', [AdminController::class, 'show'])->name('index');
+    });
+
+
 Route::get('/auth', [AuthController::class, 'getAuth'])->name('auth');
 
-Route::prefix('categories')
+Route::name('categories.')
+       ->prefix('categories')
+       ->namespace('Categories')
        ->group( function () {
-           Route::get('/', [CategoriesController::class, 'getAllCategories'])->name('cat_all');
-           Route::get('/news/{id}', [CategoriesController::class, 'getNewsByCategory'])->name('cat_news');
-           Route::get('/{category_id}/news/{id}', [CategoriesController::class, 'getSingleNews'])->name('cat_single_news');
-           Route::get('/add', [CategoriesController::class, 'addNews'])->name('cat_add_news');
+           Route::get('/', [CategoriesController::class, 'getAllCategories'])->name('all');
+           Route::get('/{slug}', [CategoriesController::class, 'getNewsInCategory'])->name('item');
+           Route::get('/{slug}/{id}', [CategoriesController::class, 'getNewsByCategory'])->name('show');
+           Route::get('/add', [CategoriesController::class, 'addNews'])->name('add');
        });
 
 /*
