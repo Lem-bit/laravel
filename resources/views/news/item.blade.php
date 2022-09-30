@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.app')
 @section('title_name', 'Новость')
 
 @section('menu')
@@ -12,7 +12,7 @@
         <div><b>{{ $item['title'] }}</b></div><br>
 
         @if($item['isPrivate'])
-            <a href="{{ route('auth') }}">Зарегистрируйтесь</a> чтобы посмотреть
+            <a href="{{ route('login') }}">Зарегистрируйтесь</a> чтобы посмотреть
         @else
             Текст:<br>
             <div>{{ $item['text'] }}</div><br>

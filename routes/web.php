@@ -2,9 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\admin\AdminController;
-use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\news\CategoriesController;
-use App\Http\Controllers\menu\MenuController;
 use App\Http\Controllers\HomeController;
 
 /*
@@ -18,10 +16,9 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'show'])->name('main');
+Route::get('/', [HomeController::class, 'index'])->name('main');
 
 Route::view('/404', '404')->name('404');
-
 
 Route::name('admin.')
     ->prefix('admin')
@@ -29,9 +26,6 @@ Route::name('admin.')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
     });
-
-
-Route::get('/auth', [AuthController::class, 'getAuth'])->name('auth');
 
 Route::name('categories.')
        ->prefix('categories')
@@ -49,3 +43,7 @@ Route::fallback(function () {
 });
 */
 
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
