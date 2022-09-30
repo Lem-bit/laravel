@@ -1,6 +1,9 @@
-<?php include_once route('main_menu'); ?>
+<?php include_once (__DIR__ . '/../menu/menu.php'); ?>
     <br><br>
 
+<br><br>
+
 <?php foreach ($news as $item): ?>
-    <a href="/news/<?=$item['id_category']?>/<?=$item['id']?>"><?=$item['title']?></a><br><br>
+    <a href="/categories/<?=$item['id_category']?>/news/<?=$item['id']?>"><?=$item['title']?></a><br><br>
 <?php endforeach;?>
+

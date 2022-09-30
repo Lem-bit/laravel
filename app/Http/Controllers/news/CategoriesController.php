@@ -14,20 +14,25 @@ class CategoriesController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function getAllCategories(Request $request)
     {
         $categories = VirtualDataSource::getCategories();
-        return view('news.categories')->with('categories', $categories);
+        return $categories? view('news.categories')->with('categories', $categories): view('404');
     }
 
     public function getNewsByCategory($id_category) {
         $news = VirtualDataSource::getNewsByCategory($id_category);
-        return view('news.news')->with('news', $news);
+        return $news? view('news.news')->with('news', $news): view('404');
     }
 
     public function getSingleNews($id_category, $id_news) {
         $single_news = VirtualDataSource::getSingleNews($id_category, $id_news);
-        return view('news.single_news')->with('single_news', $single_news);
+        return $single_news? view('news.single_news')->with('single_news', $single_news): view('404');
     }
+
+    public function addNews(Request $request) {
+        return view('news.addnews');
+    }
+
 
 }

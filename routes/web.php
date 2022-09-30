@@ -5,6 +5,7 @@ use App\Http\Controllers\admin\AdminController;
 use App\Http\Controllers\auth\AuthController;
 use App\Http\Controllers\news\CategoriesController;
 use App\Http\Controllers\menu\MenuController;
+use App\Http\Controllers\HomeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -17,12 +18,26 @@ use App\Http\Controllers\menu\MenuController;
 |
 */
 
-Route::get('/', function () {
-    return view('index');
-})->name('main');
+Route::get('/', [HomeController::class, 'show'])->name('main');
 
-Route::get('/menu', [MenuController::class, '__invoke'])->name('main_menu');
-Route::get('/auth', [AuthController::class, '__invoke'])->name('auth');
-Route::get('/news', [CategoriesController::class, '__invoke'])->name('categories');
-Route::get('/categories/{id}', [CategoriesController::class, 'getNewsByCategory'])->name('news');
-Route::get('/news/{category_id}/{id}', [CategoriesController::class, 'getSingleNews'])->name('single_news');
+Route::get('/404', function () {
+   return view('404');
+})->name('404');
+
+Route::get('/admin', [AdminController::class, 'show'])->name('admin');
+Route::get('/auth', [AuthController::class, 'getAuth'])->name('auth');
+
+Route::prefix('categories')
+       ->group( function () {
+           Route::get('/', [CategoriesController::class, 'getAllCategories'])->name('cat_all');
+           Route::get('/news/{id}', [CategoriesController::class, 'getNewsByCategory'])->name('cat_news');
+           Route::get('/{category_id}/news/{id}', [CategoriesController::class, 'getSingleNews'])->name('cat_single_news');
+           Route::get('/add', [CategoriesController::class, 'addNews'])->name('cat_add_news');
+       });
+
+/*
+Route::fallback(function () {
+   return view('/404');
+});
+*/
+

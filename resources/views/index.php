@@ -5,7 +5,7 @@
    <body>
       <h3>Главная страница</h3>
       <br>
-      <?php include_once route('main_menu'); ?>
+      <?php include_once ('menu/menu.php'); ?>
    </body>
 </html>
 

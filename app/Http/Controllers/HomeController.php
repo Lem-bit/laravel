@@ -1,11 +1,10 @@
 <?php
 
-namespace App\Http\Controllers\menu;
+namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class MenuController extends Controller
+class HomeController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -13,8 +12,8 @@ class MenuController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function __invoke(Request $request)
+    public function Show(Request $request)
     {
-        return view('menu.menu');
+        return view('index');
     }
 }
