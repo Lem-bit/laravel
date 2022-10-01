@@ -7,11 +7,21 @@
 
 @section('content')
     <br><br>
-    @forelse($news as $item)
-        <a href="{{ route('categories.show', [$slug, $item['id']]) }}">{{ $item['title'] }}</a><br>
-    @empty
-        <p>Нет такой категории</p>
-    @endforelse
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <div class="list-group">
+                        @forelse($news as $item)
+                            <a class="list-group-item list-group-item-action" href="{{ route('categories.show', [$slug, $item['id']]) }}">{{ $item['title'] }}</a><br>
+                        @empty
+                            <p>Нет такой категории</p>
+                        @endforelse
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 @endsection
 
 

@@ -8,16 +8,28 @@
 @section('content')
     <br><br>
 
-    @if($item)
-        <div><b>{{ $item['title'] }}</b></div><br>
+    <div class="container px-4">
+        <div class="row gx-5">
+            <div class="col">
+                <div class="p-3 border bg-light">
+                    <div class="card">
+                        @if($item)
+                        <h5 class="card-header"><b>{{ $item['title'] }}</b></h5>
+                        <div class="card-body">
+                            @if($item['isPrivate'])
+                                <a href="{{ route('login') }}">Зарегистрируйтесь</a> чтобы посмотреть
+                            @else
+                                <p class="card-text">{{ $item['text'] }}</p>
+                            @endif
+                        </div>
+                        @else
+                            Нет такой новости
+                        @endif
+                        <a href="{{ route('categories.all') }}" class="btn btn-primary">Назад</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-        @if($item['isPrivate'])
-            <a href="{{ route('login') }}">Зарегистрируйтесь</a> чтобы посмотреть
-        @else
-            Текст:<br>
-            <div>{{ $item['text'] }}</div><br>
-        @endif
-    @else
-        Нет такой новости
-    @endif
 @endsection

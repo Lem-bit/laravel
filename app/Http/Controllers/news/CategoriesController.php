@@ -31,9 +31,4 @@ class CategoriesController extends Controller
         return (isNull($id))? view('news.item')->with('item', $news->getNewsByIdAndCategory($id, $id_news)): view('404');
     }
 
-    public function addNews() {
-        return view('news.addnews');
-    }
-
-
 }

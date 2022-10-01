@@ -25,6 +25,7 @@ Route::name('admin.')
     ->namespace('Admin')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
+        Route::get('/addnews', [AdminController::class, 'addNews'])->name('addnews');
     });
 
 Route::name('categories.')
@@ -34,7 +35,6 @@ Route::name('categories.')
            Route::get('/', [CategoriesController::class, 'getAllCategories'])->name('all');
            Route::get('/{slug}', [CategoriesController::class, 'getNewsInCategory'])->name('item');
            Route::get('/{slug}/{id}', [CategoriesController::class, 'getNewsByCategory'])->name('show');
-           Route::get('/add', [CategoriesController::class, 'addNews'])->name('add');
        });
 
 /*
