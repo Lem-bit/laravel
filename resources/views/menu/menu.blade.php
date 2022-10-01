@@ -1,12 +1,12 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link active" href="{{ route('main') }}">Главная страница</a>
+        <a class="nav-link {{request()->routeIs('main')? 'active': ''}}" href="{{ route('main') }}">Главная страница</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('categories.all') }}">Категории новостей</a>
+        <a class="nav-link {{request()->routeIs('categories.all')? 'active': ''}}" href="{{ route('categories.all') }}">Категории новостей</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" href="{{ route('admin.index') }}">Админка</a>
+        <a class="nav-link {{request()->routeIs('admin.index')? 'active': ''}}" href="{{ route('admin.index') }}">Админка</a>
     </li>
 </ul>
 

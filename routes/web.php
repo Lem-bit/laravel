@@ -25,7 +25,9 @@ Route::name('admin.')
     ->namespace('Admin')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
-        Route::get('/addnews', [AdminController::class, 'addNews'])->name('addnews');
+        Route::match(['get', 'post'],'/addnews', [AdminController::class, 'addNews'])->name('addnews');
+        Route::get('/action_one', [AdminController::class, 'Action_one'])->name('action_one');
+        Route::get('/action_two', [AdminController::class, 'Action_two'])->name('action_two');
     });
 
 Route::name('categories.')

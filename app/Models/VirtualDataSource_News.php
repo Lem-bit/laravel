@@ -175,4 +175,8 @@ class VirtualDataSource_News {
         return array_shift($arr);
     }
 
+    public function getNewsList() {
+        return $this->news_list;
+    }
+
 }

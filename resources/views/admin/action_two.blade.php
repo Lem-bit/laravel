@@ -1,6 +1,6 @@
 @extends('layouts.app')
 
-@section('title_name', 'Админка')
+@section('title_name', 'Action TWO')
 
 @section('menu')
     @include('admin.menu')
@@ -12,7 +12,7 @@
         <div class="row gx-5">
             <div class="col">
                 <div class="p-3 border bg-light">
-                    <a href="{{ route('admin.addnews') }}">Добавить новость</a><br><br>
+                    ACTION TWO
                 </div>
             </div>
         </div>
