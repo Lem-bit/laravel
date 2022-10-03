@@ -20,7 +20,7 @@ class AdminController extends Controller
         return view('admin.index');
     }
 
-    public function addNews(Request $request, VirtualDataSource_Categories $categories, VirtualDataSource_News $news){
+    public function createNews(Request $request, VirtualDataSource_Categories $categories, VirtualDataSource_News $news){
         if ($request->isMethod('post')) {
 
             $news->loadFromFile();
@@ -31,7 +31,7 @@ class AdminController extends Controller
             return redirect()->route('categories.show', [$category['slug'], $id]);
         }
 
-        return view('admin.addnews', [
+        return view('admin.create_news', [
             'categories' => $categories->getCategoryList()
         ]);
     }

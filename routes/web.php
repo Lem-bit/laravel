@@ -32,7 +32,7 @@ Route::name('admin.')
     ->namespace('Admin')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
-        Route::match(['get', 'post'],'/addnews', [AdminController::class, 'addNews'])->name('addnews');
+        Route::match(['get', 'post'],'/create_news', [AdminController::class, 'createNews'])->name('create_news');
         Route::match(['get', 'post'], '/save_news', [AdminController::class, 'saveNews'])->name('save_news');
         Route::get('/action_two', [AdminController::class, 'actionTwo'])->name('action_two');
     });

@@ -2,7 +2,7 @@
 @section('title_name', 'Категории')
 
 @section('menu')
-    @include('menu.menu')
+    @include('menu.main')
 @endsection
 
 @section('content')

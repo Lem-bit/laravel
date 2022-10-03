@@ -39,7 +39,7 @@ class ExampleTest extends TestCase
     }
 
     public function test_addnews_page_content_ok () {
-        $response = $this->get('/admin/addnews');
+        $response = $this->get('/admin/create_news');
         $response->assertStatus(200)->assertSee('Форма добавления новости');
     }
 

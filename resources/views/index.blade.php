@@ -3,7 +3,7 @@
 @section('title_name', 'Главная')
 
 @section('menu')
-    @include('menu.menu')
+    @include('menu.main')
 @endsection
 
 @section('content')

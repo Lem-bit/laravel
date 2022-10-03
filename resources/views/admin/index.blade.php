@@ -12,7 +12,7 @@
         <div class="row gx-5">
             <div class="col">
                 <div class="p-3 border bg-light">
-                    <a href="{{ route('admin.addnews') }}">Добавить новость</a><br><br>
+                    <a href="{{ route('admin.create_news') }}">Добавить новость</a><br><br>
                 </div>
             </div>
         </div>

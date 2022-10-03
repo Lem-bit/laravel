@@ -10,7 +10,7 @@
     <div class="container px-4">
         <div class="row gx-5">
             <div class="col">
-                <form action="{{ route('admin.addnews') }}" method="post">
+                <form action="{{ route('admin.create_news') }}" method="post">
                     @csrf
                     <fieldset>
                         <legend>Форма добавления новости</legend>
