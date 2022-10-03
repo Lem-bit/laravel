@@ -12,8 +12,8 @@
             <div class="col">
                 <div class="p-3 border bg-light">
                     <div class="list-group">
-                       @forelse($categories as $item)
-                          <a class="list-group-item list-group-item-action" href="{{ route('categories.item', $item['slug']) }}">{{ $item['title'] }}</a><br>
+                       @forelse($categories as $category)
+                          <a class="list-group-item list-group-item-action" href="{{ route('categories.item', $category['slug']) }}">{{ $category['title'] }}</a><br>
                        @empty
                     </div>
                         <p>Нет категорий</p>

@@ -23,12 +23,23 @@ class CategoriesController extends Controller
 
     public function getNewsInCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug) {
         $id = $categories->getIdCategoryBySlug($slug);
-        return (isNull($id))? view('news.index')->with(['news' => $news->getNewsByCategory($id), 'slug' => $slug]): view('404');
+        return (isNull($id))?
+            view('news.index')->with([
+                'news' => $news->getNewsByCategory($id),
+                'slug' => $slug,
+                'title' => $categories->getCategoryById($id)['title']
+            ]):
+            view('404');
     }
 
     public function getNewsByCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug, $id_news) {
         $id = $categories->getIdCategoryBySlug($slug);
-        return (isNull($id))? view('news.item')->with('item', $news->getNewsByIdAndCategory($id, $id_news)): view('404');
+        return (isNull($id))?
+            view('news.item')->with([
+                'item' => $news->getNewsByIdAndCategory($id, $id_news),
+                'slug' => $slug
+            ]):
+            view('404');
     }
 
 }

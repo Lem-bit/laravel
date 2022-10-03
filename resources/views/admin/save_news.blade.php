@@ -26,7 +26,21 @@
                                         @endforelse
 
                                     </select>
-                                </div>
+                                    <br>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type_export" id="flexRadioDefault1" value="1" checked>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            JSON format
+                                        </label>
+                                    </div>
+                                    <!--
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="type_export" id="flexRadioDefault2" value="2">
+                                        <label class="form-check-label" for="flexRadioDefault2">
+                                            PDF format
+                                        </label>
+                                    </div>
+                                    -->
                             </div>
                         <button type="submit" class="btn btn-primary btn-sm">Скачать</button>
                     </form>
