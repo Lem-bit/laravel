@@ -16,9 +16,16 @@ use App\Http\Controllers\HomeController;
 |
 */
 
-Route::get('/', [HomeController::class, 'index'])->name('main');
+Route::get('/', [HomeController::class, 'index'])->name('home');
 
-Route::view('/404', '404')->name('404');
+Route::name('home.')
+    ->prefix('home')
+    ->namespace('Home')
+    ->group( function () {
+        Route::get('/', [HomeController::class, 'index'])->name('main');
+        Route::get('/save', [HomeController::class, 'save'])->name('save');
+        Route::get('/load', [HomeController::class, 'load'])->name('load');
+    });
 
 Route::name('admin.')
     ->prefix('admin')
@@ -26,8 +33,8 @@ Route::name('admin.')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
         Route::match(['get', 'post'],'/addnews', [AdminController::class, 'addNews'])->name('addnews');
-        Route::get('/action_one', [AdminController::class, 'Action_one'])->name('action_one');
-        Route::get('/action_two', [AdminController::class, 'Action_two'])->name('action_two');
+        Route::match(['get', 'post'], '/save_news', [AdminController::class, 'saveNews'])->name('save_news');
+        Route::get('/action_two', [AdminController::class, 'actionTwo'])->name('action_two');
     });
 
 Route::name('categories.')

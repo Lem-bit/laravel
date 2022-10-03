@@ -2,42 +2,19 @@
 
 namespace App\Models;
 
+use Illuminate\Support\Facades\Storage;
+
 class VirtualDataSource_Categories
 {
-    private array $category_list = [
-        1 => [
-            'id' => 1,
-            'title' => 'IT',
-            'text' => 'Новости в IT индустрии',
-            'slug' => 'it'
-        ],
-        2 => [
-            'id' => 2,
-            'title' => 'Спорт',
-            'text' => 'Новости спорта',
-            'slug' => 'sport'
-        ],
-        3 => [
-            'id' => 3,
-            'title' => 'Культура',
-            'text' => 'Новости культуры',
-            'slug' => 'culture'
-        ],
-        4 => [
-            'id' => 4,
-            'title' => 'Наука',
-            'text' => 'Новости науки',
-            'slug' => 'science'
-        ],
-        5 => [
-            'id' => 5,
-            'title' => 'Туризм',
-            'text' => 'Новости туризма',
-            'slug' => 'tourism'
-        ]
-    ];
+    private array $category_list = [];
+
+    public function getCategoryById($id) {
+        $this->loadFromFile();
+        return $this->category_list[$id];
+    }
 
     public function getIdCategoryBySlug($slug) {
+        $this->loadFromFile();
         foreach ($this->category_list as $item) {
             if ($item['slug'] == $slug)
                 return $item['id'];
@@ -46,7 +23,17 @@ class VirtualDataSource_Categories
     }
 
     public function getCategoryList(): array {
+        $this->loadFromFile();
         return $this->category_list;
+    }
+
+    public function saveToFile() {
+        Storage::disk('local')->put('categories.json', json_encode($this->category_list),
+            JSON_UNESCAPED_UNICODE | JSON_PRETTY_PRINT);
+    }
+
+    public function loadFromFile() {
+        $this->category_list = json_decode(Storage::disk('local')->get('categories.json'), true);
     }
 
 }

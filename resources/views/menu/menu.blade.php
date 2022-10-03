@@ -1,6 +1,6 @@
 <ul class="nav">
     <li class="nav-item">
-        <a class="nav-link {{request()->routeIs('main')? 'active': ''}}" href="{{ route('main') }}">Главная страница</a>
+        <a class="nav-link {{request()->routeIs('home')? 'active': ''}}" href="{{ route('home') }}">Главная страница</a>
     </li>
     <li class="nav-item">
         <a class="nav-link {{request()->routeIs('categories.all')? 'active': ''}}" href="{{ route('categories.all') }}">Категории новостей</a>
