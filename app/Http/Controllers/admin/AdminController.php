@@ -38,7 +38,7 @@ class AdminController extends Controller
 
     public function saveNews(Request $request, VirtualDataSource_Categories $categories, VirtualDataSource_News $news) {
         if ($request->isMethod('post')) {
-            dd($request->all());
+
             //search category
             $id_category = $request->input('id_category');
             $list = $news->getNewsByCategory($id_category);
