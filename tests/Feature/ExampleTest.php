@@ -3,6 +3,7 @@
 namespace Tests\Feature;
 
 // use Illuminate\Foundation\Testing\RefreshDatabase;
+use App\Models\News;
 use GuzzleHttp\Psr7\UploadedFile;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Testing\Fluent\AssertableJson;
@@ -53,7 +54,21 @@ class ExampleTest extends TestCase
                 'id_category',
                 'title',
                 'text',
-                'isPrivate']
+                'is_private']
             ]);
+    }
+
+    public function test_database_insert () {
+        $news = new News;
+        $item = [
+            'id_category' => 999,
+            'title' => 'title',
+            'text' => 'text',
+            'is_private' => false
+        ];
+
+        $id = $news->createNews($item);
+        $this->assertFalse($id < 1);
+        $news->deleteById($id);
     }
 }

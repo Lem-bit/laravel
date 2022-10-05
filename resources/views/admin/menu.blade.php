@@ -9,7 +9,7 @@
         <a class="nav-link" {{request()->routeIs('admin.save_news')? 'active': ''}} href="{{ route('admin.save_news') }}">Скачать новости</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link" {{request()->routeIs('admin.action_two')? 'active': ''}} href="{{ route('admin.action_two') }}">Скачать все новости</a>
+        <a class="nav-link" {{request()->routeIs('admin.news')? 'active': ''}} href="{{ route('admin.news') }}">Все новости</a>
     </li>
 </ul>
 

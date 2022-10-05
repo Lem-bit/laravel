@@ -14,7 +14,7 @@
                     <h5 class="card-header"><b><a href="{{ route('categories.all') }}">[<<]</a> {{ $title }}</b></h5>
                     <div class="list-group">
                         @forelse($news as $item)
-                            <a class="list-group-item list-group-item-action" href="{{ route('categories.show', [$slug, $item['id']]) }}">{{ $item['title'] }}</a><br>
+                            <a class="list-group-item list-group-item-action" href="{{ route('categories.show', [$slug, $item->id]) }}">{{ $item->title }}</a><br>
                         @empty
                             <p>Нет такой категории</p>
                         @endforelse

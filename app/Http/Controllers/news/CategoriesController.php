@@ -3,41 +3,36 @@
 namespace App\Http\Controllers\news;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
-use App\Models\VirtualDataSource_News;
-use App\Models\VirtualDataSource_Categories;
+use App\Models\Categories;
+use App\Models\News;
 use function PHPUnit\Framework\isNull;
 
 class CategoriesController extends Controller
 {
-    /**
-     * Handle the incoming request.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\Contracts\View\View
-     */
-    public function getAllCategories(VirtualDataSource_Categories $categories)
+
+    public function getAllCategories(Categories $categories)
     {
-        return view('news.categories')->with('categories', $categories->getCategoryList());
+        return view('news.categories')->with('categories', $categories->getCategories());
     }
 
-    public function getNewsInCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug) {
-        $id = $categories->getIdCategoryBySlug($slug);
-        return (isNull($id))?
+    public function getNewsInCategory(Categories $categories, News $news, $slug) {
+        $category = $categories->getCategoryBySlug($slug);
+        return (isNull($category))?
             view('news.index')->with([
-                'news' => $news->getNewsByCategory($id),
+                'news' => $news->getNewsByIdCategory($category->id),
                 'slug' => $slug,
-                'title' => $categories->getCategoryById($id)['title']
+                'title' => $category->title
             ]):
             view('404');
     }
 
-    public function getNewsByCategory(VirtualDataSource_Categories $categories, VirtualDataSource_News $news, $slug, $id_news) {
-        $id = $categories->getIdCategoryBySlug($slug);
-        return (isNull($id))?
+    public function getNewsByCategory(Categories $categories, News $news, $slug, $id_news) {
+        $category = $categories->getCategoryBySlug($slug);
+
+        return (isNull($category))?
             view('news.item')->with([
-                'item' => $news->getNewsByIdAndCategory($id, $id_news),
-                'slug' => $slug
+                'item' => $news->getNewsById($id_news),
+                'slug' => $category->slug
             ]):
             view('404');
     }

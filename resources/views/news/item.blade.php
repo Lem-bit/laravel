@@ -14,12 +14,12 @@
                 <div class="p-3 border bg-light">
                     <div class="card">
                         @if($item)
-                        <h5 class="card-header"><b><a href="{{ route('categories.item', $slug) }}">[<<]</a> {{ $item['title'] }}</b></h5>
+                        <h5 class="card-header"><b><a href="{{ route('categories.item', $slug) }}">[<<]</a> {{ $item->title }}</b></h5>
                         <div class="card-body">
-                            @if($item['isPrivate'])
+                            @if($item->is_private)
                                 <a href="{{ route('login') }}">Зарегистрируйтесь</a> чтобы посмотреть
                             @else
-                                <p class="card-text">{{ $item['text'] }}</p>
+                                <p class="card-text">{{ $item->text }}</p>
                             @endif
                         </div>
                         @else

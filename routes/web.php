@@ -34,7 +34,10 @@ Route::name('admin.')
         Route::get('/', [AdminController::class, 'show'])->name('index');
         Route::match(['get', 'post'],'/create_news', [AdminController::class, 'createNews'])->name('create_news');
         Route::match(['get', 'post'], '/save_news', [AdminController::class, 'saveNews'])->name('save_news');
-        Route::get('/action_two', [AdminController::class, 'actionTwo'])->name('action_two');
+        Route::get('/news', [AdminController::class, 'getAllNews'])->name('news');
+        Route::get('/saveall', [AdminController::class, 'saveAllNews'])->name('saveallnews');
+        Route::get('/delete/{id}', [AdminController::class, 'deleteNews'])->name('deletenews');
+        Route::get('/edit/{id}', [AdminController::class, 'editNews'])->name('editnews');
     });
 
 Route::name('categories.')
