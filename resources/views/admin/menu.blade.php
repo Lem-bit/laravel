@@ -11,5 +11,8 @@
     <li class="nav-item">
         <a class="nav-link" {{request()->routeIs('admin.news')? 'active': ''}} href="{{ route('admin.news') }}">Все новости</a>
     </li>
+    <li class="nav-item">
+        <a class="nav-link" {{request()->routeIs('admin.categories')? 'active': ''}} href="{{ route('admin.categories') }}">Все категории</a>
+    </li>
 </ul>
 

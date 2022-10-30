@@ -11,7 +11,7 @@
         <div class="row gx-5">
             <div class="col">
                 <div class="p-3 border bg-light">
-                    <h5 class="card-header"><b><a href="{{ route('categories.all') }}">[<<]</a> {{ $title }}</b></h5>
+                    <h5 class="card-header"><b><a href="{{ route('categories.all') }}">Все категории</a> \ {{ $title }} <br><br></b></h5>
                     <div class="list-group">
                         @forelse($news as $item)
                             <a class="list-group-item list-group-item-action" href="{{ route('categories.show', [$slug, $item->id]) }}">{{ $item->title }}</a><br>

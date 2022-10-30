@@ -13,13 +13,15 @@
                 <div class="p-3 border bg-light">
                     <div class="list-group">
                        @forelse($categories as $category)
-                          <a class="list-group-item list-group-item-action" href="{{ route('categories.item', $category->slug) }}">{{ $category->title }}</a><br>
-                       @empty
-                    </div>
-                        <p>Нет категорий</p>
-                    @endforelse
-                </div>
-            </div>
-        </div>
-    </div>
+                          <a class="list-group-item list-group-item-action" href="{{ route('categories.item', $category->slug) }}">
+    <b>{{ $category->text }}</b><br><i>{{ $category->title }}</i>
+</a><br>
+@empty
+</div>
+<p>Нет категорий</p>
+@endforelse
+</div>
+</div>
+</div>
+</div>
 @endsection

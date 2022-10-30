@@ -33,11 +33,15 @@ Route::name('admin.')
     ->group( function () {
         Route::get('/', [AdminController::class, 'show'])->name('index');
         Route::match(['get', 'post'],'/create_news', [AdminController::class, 'createNews'])->name('create_news');
+        Route::match(['get', 'post'], '/create_category', [AdminController::class, 'createCategory'])->name('create_category');
         Route::match(['get', 'post'], '/save_news', [AdminController::class, 'saveNews'])->name('save_news');
         Route::get('/news', [AdminController::class, 'getAllNews'])->name('news');
+        Route::get('/categories', [AdminController::class, 'getAllCategories'])->name('categories');
         Route::get('/saveall', [AdminController::class, 'saveAllNews'])->name('saveallnews');
+        Route::get('/category/delete/{id}', [AdminController::class, 'deleteCategory'])->name('deletecategory');
+        Route::match(['get', 'post'],'/category/edit/{id}', [AdminController::class, 'editCategory'])->name('editcategory');
         Route::get('/delete/{id}', [AdminController::class, 'deleteNews'])->name('deletenews');
-        Route::get('/edit/{id}', [AdminController::class, 'editNews'])->name('editnews');
+        Route::match(['get', 'post'],'/edit/{id}', [AdminController::class, 'editNews'])->name('editnews');
     });
 
 Route::name('categories.')

@@ -13,6 +13,7 @@
             <div class="col">
                 <div class="p-3 border bg-light">
                     <a href="{{ route('admin.create_news') }}">Добавить новость</a><br><br>
+                    <a href="{{ route('admin.create_category') }}">Добавить категорию</a><br><br>
                 </div>
             </div>
         </div>

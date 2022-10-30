@@ -16,12 +16,12 @@
                     <hr>
                     @forelse($news as $item)
                         <div class="card-body">
-                            <u><p class="card-text">{{ $item->id }} / {{ $item->id_category }}</p></b></u>
+                            <u><p class="card-text">id: {{ $item->id }} / {{ $item->id_category }}</p></b></u>
                             <b><p class="card-text">{{ $item->title }}</p></b>
                             <p class="card-text">{{ $item->text }}</p>
                             <br>
                             <button type="submit" class="btn btn-primary btn-sm" onclick="location.href='{{ route('admin.editnews', [$item->id]) }}'">Редактировать</button>
-                            <button type="submit" class="btn btn-primary btn-sm" onclick="location.href='{{ route('admin.deletenews', [$item->id]) }}'">Удалить</button>
+                            <button class="btn btn-primary btn-sm" onclick="location.href='{{ route('admin.deletenews', [$item->id]) }}'">Удалить</button>
                             <hr>
                         </div>
 
